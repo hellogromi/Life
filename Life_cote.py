@@ -30,12 +30,12 @@ def next_generation(f):
     new_f = copy.deepcopy(f)
     for i in range(rows):
         for j in range(cols):
-            neighbors = count_neighbors(f, i, j)
+            neighb = count_neighbors(f, i, j)
             if f[i][j] == 1:
-                if neighbors < 2 or neighbors > 3:
+                if neighb < 2 or neighb > 3:
                     new_f[i][j] = 0
             else:
-                if neighbors == 3:
+                if neighb == 3:
                     new_f[i][j] = 1
     return new_f
 
