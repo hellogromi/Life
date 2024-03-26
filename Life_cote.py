@@ -40,7 +40,8 @@ def next_generation(f):
     return new_f
 
 # Задаем размер поля
-rows, cols = 20, 40
+rows = int(input("Значение до 10:", ))
+cols = int(input("Значение до 10:", ))
 
 # Создаем начальное поле
 f = fields(rows, cols)
@@ -53,8 +54,7 @@ for i in range(rows):
         f[i][j] = random.choice([0, 1])
 
 # Основной цикл игры
-while True:
-    os.system('cls' if os.name == 'nt' else 'clear')
+while any(any(rows) for rows in f):
     print_f(f)
     f = next_generation(f)
     time.sleep(0.4)
