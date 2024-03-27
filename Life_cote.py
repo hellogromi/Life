@@ -16,7 +16,6 @@ while correctness != True:
 
 while answer != "нет":
 
-    import os
     import time
     import copy
     import random
@@ -28,7 +27,7 @@ while answer != "нет":
     # Вывод поля на экран
     def print_f(f):
         for row in f:
-            print(' '.join(['*' if cell else ' ' for cell in row]))
+            print(' '.join(['•' if cell else ' ' for cell in row]))
 
     # Подсчет количества живых соседей для клетки
     def count_neighbors(f, x, y):
@@ -58,26 +57,30 @@ while answer != "нет":
         return new_f
 
     # Задаем размер поля
-    rows = int(input("Введите значение до 10: "))
+    rows = int(input("Введите значение оси y до 20: "))
     correctness_1 = False
     while correctness_1 != True:
-        if rows < 1 or rows > 10:
+        if rows < 1 or rows > 20:
             correctness_1 = False
-            rows = int(input("Введите значение до 10: "))
+            rows = int(input("Введите значение оси x  до 20: "))
         else:
             correctness_1 = True
-    cols = int(input("Введите значение до 10: "))
+
+    cols = int(input("Введите значение до 20: "))
     correctness_2 = False
     while correctness_2 != True:
-        if cols < 1 or cols > 10:
+        if cols < 1 or cols > 20:
             correctness_2 = False
-            cols = int(input("Введите значение до 10: "))
+            cols = int(input("Введите значение до 20: "))
         else:
             correctness_2 = True
+
     # Создаем начальное поле
+
     f = fields(rows, cols)
 
     # Наполняем поле случайными значениями (живые клетки)
+
     # Для примера заполним поле случайным образом
 
     for i in range(rows):
@@ -95,8 +98,6 @@ while answer != "нет":
         else:
             correctness_4 = True
 
-
-
     corectness_3 = False
     while corectness_3 != True:
         if days <= 100:
@@ -106,6 +107,8 @@ while answer != "нет":
             days = int(input("Введите количество дней до 100: "))
 
     for i in range(days):
+        if  not any(any(f[j]) for j in range(len(f))):
+            break
         print_f(f)
         f = next_generation(f)
         time.sleep(0.4)
