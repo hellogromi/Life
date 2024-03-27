@@ -3,6 +3,22 @@ import time
 import copy
 import random
 
+# Приветствие
+
+print('Здравствуйте, вас приветствует игра "Жизнь", ознакомьтесь с правилами игры в описании!', "Поехали?", sep="\n")
+
+# Готовность
+
+answer = input("Ведите да или нет:").lower()
+
+correctness = False
+while correctness != True:
+    if answer == "да" or answer == "нет":
+        correctness = True
+    else:
+        correctness = False
+        answer = input("Ведите да или нет:").lower()
+
 # Создание пустого поля
 def fields(rows, cols):
     return [[0 for _ in range(cols)] for _ in range(rows)]
@@ -54,7 +70,8 @@ for i in range(rows):
         f[i][j] = random.choice([0, 1])
 
 # Основной цикл игры
-while any(any(rows) for rows in f):
+days = int(input("Введите количество дней:", ))
+for i in range(days):
     print_f(f)
     f = next_generation(f)
     time.sleep(0.4)
